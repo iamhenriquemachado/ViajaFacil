@@ -2,10 +2,12 @@
 using ViajaFacil.Services;
 using ViajaFacil.Models;
 using ViajaFacil.Data;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Crypto.Generators;
-using BCrypt.Net; 
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 
 namespace ViajaFacil.Controllers {
@@ -23,21 +25,22 @@ namespace ViajaFacil.Controllers {
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model) {
-            if (string.IsNullOrWhiteSpace(model.Username) || string.IsNullOrWhiteSpace(model.Password)) {
+            if (string.IsNullOrWhiteSpace(model.Email) || string.IsNullOrWhiteSpace(model.Password)) {
                 return BadRequest(new { message = "Username and password are required." });
             }
 
             var user = await _context.Users
-                .FirstOrDefaultAsync(u => u.Name == model.Username);
+                .FirstOrDefaultAsync(u => u.Email == model.Email);
 
             if (user == null) {
-                return Unauthorized(new { message = "Invalid email or password" });
+                return Unauthorized(new { message = "Invalid email or password 01" });
             };
 
-            // Check password
-            bool validPassword = BCrypt.Net.BCrypt.Verify(model.Password, user.Password);
-            if (!validPassword) {
-                return Unauthorized(new { message = "Invalid email or password" });
+
+            var passwordHasher = new PasswordHasher<User>();
+            var result = passwordHasher.VerifyHashedPassword(user, user.Password, model.Password);
+            if (result == PasswordVerificationResult.Failed) {
+                return Unauthorized(new { message = "Invalid email or password 02" });
             }
 
             var token = _tokenService.GenerateToken(
@@ -45,6 +48,7 @@ namespace ViajaFacil.Controllers {
                user.Email, 
                user.IsAdmin
            );
+
 
             return Ok(new {
                 token,
@@ -54,6 +58,24 @@ namespace ViajaFacil.Controllers {
                     user.Email,
                     user.IsAdmin
                 }
+            });
+        }
+
+        [Authorize]
+        [HttpGet("me")]
+        public async Task<IActionResult> GetUserLoggedData() {
+
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null) return Unauthorized(new { message = "Unauthorized" });
+
+            var user = await _context.Users.FindAsync(int.Parse(userId));
+            if (user == null) return NotFound(new { message = "User not found" });
+
+            return Ok(new {
+                id = userId,
+                name = user.Name,
+                email = user.Email,
+                isAdmin = user.IsAdmin
             });
         }
 

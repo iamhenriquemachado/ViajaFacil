@@ -14,7 +14,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // JWT Authentication Setup
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
-var key = Encoding.ASCII.GetBytes(jwtSettings["Key"]);
+var key = Encoding.ASCII.GetBytes(jwtSettings["SecretKey"]);
 
 builder.Services.AddAuthentication(x => {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -31,7 +31,8 @@ builder.Services.AddAuthentication(x => {
         ValidateAudience = true,
         ValidIssuer = jwtSettings["Issuer"],
         ValidAudience = jwtSettings["Audience"],
-        ClockSkew = TimeSpan.Zero
+        ClockSkew = TimeSpan.Zero, 
+
     };
 });
 

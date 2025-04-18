@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\ServerController.cs" />
     <Compile Remove="Models\Role.cs" />
   </ItemGroup>
 

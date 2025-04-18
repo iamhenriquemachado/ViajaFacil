@@ -17,12 +17,12 @@ namespace ViajaFacil.Services {
             var jwtSettings = _configuration.GetSection("JwtSettings");
             var key = Encoding.ASCII.GetBytes(jwtSettings["SecretKey"]);
             var claims = new List<Claim> {
-                new Claim(JwtRegisteredClaimNames.Sub, userId),
-                new Claim(JwtRegisteredClaimNames.Email, email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim("isAdmin", isAdmin.ToString().ToLower())
-            };
-            
+        new Claim(ClaimTypes.NameIdentifier, userId),
+        new Claim(ClaimTypes.Email, email),
+        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        new Claim("isAdmin", isAdmin.ToString().ToLower())
+    };
+
 
             var tokenDescriptor = new SecurityTokenDescriptor {
                 Subject = new ClaimsIdentity(claims),
