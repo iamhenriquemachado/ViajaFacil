@@ -5,8 +5,6 @@ using ViajaFacil.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
-
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
 

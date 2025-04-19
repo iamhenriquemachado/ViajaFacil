@@ -17,6 +17,9 @@ namespace ViajaFacil.Models {
         public string Password { get; set; } = string.Empty;
 
         [Required]
-        public bool IsAdmin { get; set; } = false; 
+        public bool IsAdmin { get; set; } = false;
+
+        [Required]
+        public DateTime LastModified { get; set; }
     }
 }
