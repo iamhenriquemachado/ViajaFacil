@@ -4,7 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using ViajaFacil.Data;
 using ViajaFacil.Services;
-
+using ViajaFacil.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +22,7 @@ builder.Services.AddAuthentication(x => {
 })
 
 .AddJwtBearer(options => {
-    options.RequireHttpsMetadata = false; 
+    options.RequireHttpsMetadata = false;
     options.SaveToken = true;
     options.TokenValidationParameters = new TokenValidationParameters {
         ValidateIssuerSigningKey = true,
@@ -31,8 +31,7 @@ builder.Services.AddAuthentication(x => {
         ValidateAudience = true,
         ValidIssuer = jwtSettings["Issuer"],
         ValidAudience = jwtSettings["Audience"],
-        ClockSkew = TimeSpan.Zero, 
-
+        ClockSkew = TimeSpan.Zero,
     };
 });
 
@@ -43,11 +42,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Register IHttpContextAccessor
+builder.Services.AddHttpContextAccessor(); // Add this line
+
+// Register Helpers
+builder.Services.AddScoped<Helpers>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+if (app.Environment.IsDevelopment()) {
     app.UseSwagger();
     app.UseSwaggerUI();
 }

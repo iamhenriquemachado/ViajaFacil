@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ViajaFacil.Data;
 using ViajaFacil.Models;
+using ViajaFacil.Helpers; 
 
 
 namespace ViajaFacil.Controllers {
@@ -13,22 +14,25 @@ namespace ViajaFacil.Controllers {
     public class Users : ControllerBase {
 
         private readonly AppDbContext _context;
-        public Users(AppDbContext context) {
+        private readonly Helpers.Helpers _helpers;
+        public Users(AppDbContext context, Helpers.Helpers helpers) {
             _context = context;
+            _helpers = helpers; 
         }
 
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllUsers() {
 
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var userId = _helpers.GetUserIdFromClaims();
             if (userId == null)
                 return Unauthorized(new { message = "Unauthorized" });
 
-            var userAdmin = await _context.Users.FindAsync(int.Parse(userId));
-            if (userAdmin == null || !userAdmin.IsAdmin)
-                return Unauthorized(new { message = "Only administrators are allowed to perform this action" });
+            if (!await _helpers.IsAdminUser(userId.Value))
+                return Unauthorized(new { message = "Only administrators are allowed" });
 
+
+            // Retrieve users from the database
             var users = await _context.Users
                     .Select(u => new UserDTO {
                         Id = u.Id,

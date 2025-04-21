@@ -20,6 +20,6 @@ namespace ViajaFacil.Models {
         public bool IsAdmin { get; set; } = false;
 
         [Required]
-        public DateTime LastModified { get; set; }
+        public DateTime LastModified { get; set; } = DateTime.UtcNow;
     }
 }
