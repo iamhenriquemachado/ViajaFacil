@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ViajaFacil.Services;
-using ViajaFacil.Models;
 using ViajaFacil.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using ViajaFacil.Models.Users;
 
 
 namespace ViajaFacil.Controllers.Auth {
@@ -21,7 +21,7 @@ namespace ViajaFacil.Controllers.Auth {
             _context = context; 
         }
 
-        [HttpPost("login")]
+        [HttpPost]
         public async Task<IActionResult> Login([FromBody] LoginModel model) {
             if (string.IsNullOrWhiteSpace(model.Email) || string.IsNullOrWhiteSpace(model.Password)) {
                 return BadRequest(new { message = "Username and password are required." });

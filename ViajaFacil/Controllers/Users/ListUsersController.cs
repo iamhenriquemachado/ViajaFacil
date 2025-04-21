@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ViajaFacil.Data;
-using ViajaFacil.Models;
+using ViajaFacil.Models.Users;
 using ViajaFacil.Helpers;
 
 

@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ViajaFacil.Data;
-using ViajaFacil.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using ViajaFacil.Helpers;
+using ViajaFacil.Models.Users;
 
 namespace ViajaFacil.Controllers.Users {
     [Route("api/users/[controller]")]

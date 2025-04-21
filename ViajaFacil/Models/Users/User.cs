@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ViajaFacil.Models {
+namespace ViajaFacil.Models.Users {
     public class User {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ViajaFacil.Models {
+namespace ViajaFacil.Models.Users {
     public class UserUpdateDTO {
 
         [Required(ErrorMessage = "Name is required")]

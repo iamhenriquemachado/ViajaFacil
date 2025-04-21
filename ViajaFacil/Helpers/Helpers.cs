@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ViajaFacil.Data;
-using ViajaFacil.Models;
+using ViajaFacil.Models.Users;
 
 namespace ViajaFacil.Helpers {
     public class Helpers {
