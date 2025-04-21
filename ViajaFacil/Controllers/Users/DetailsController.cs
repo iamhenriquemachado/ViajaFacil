@@ -1,15 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ViajaFacil.Data;
-using ViajaFacil.Helpers; 
 
-namespace ViajaFacil.Controllers {
-    [Route("api/[controller]")]
+namespace ViajaFacil.Controllers.Users {
+    [Route("api/users/[controller]")]
     [ApiController]
-    public class UserDetailsController : ControllerBase {
+    public class DetailsController : ControllerBase {
 
         private readonly AppDbContext _context;
         private readonly Helpers.Helpers _helpers; 
-        public UserDetailsController(AppDbContext context, Helpers.Helpers helpers) {
+        public DetailsController(AppDbContext context, Helpers.Helpers helpers) {
             _context = context;
             _helpers = helpers;
         }

@@ -8,8 +8,8 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 
 
-namespace ViajaFacil.Controllers {
-    [Route("api/[controller]")]
+namespace ViajaFacil.Controllers.Auth {
+    [Route("api/users/[controller]")]
     [ApiController]
     public class AuthenticationController : ControllerBase {
 

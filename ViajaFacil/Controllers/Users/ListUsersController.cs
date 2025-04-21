@@ -4,18 +4,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ViajaFacil.Data;
 using ViajaFacil.Models;
-using ViajaFacil.Helpers; 
+using ViajaFacil.Helpers;
 
 
-namespace ViajaFacil.Controllers {
+namespace ViajaFacil.Controllers.Users {
 
-    [Route("api/[controller]")]
+    [Route("api/users/[controller]")]
     [ApiController]
-    public class Users : ControllerBase {
+    public class ListUsersController : ControllerBase {
 
         private readonly AppDbContext _context;
         private readonly Helpers.Helpers _helpers;
-        public Users(AppDbContext context, Helpers.Helpers helpers) {
+        public ListUsersController(AppDbContext context, Helpers.Helpers helpers) {
             _context = context;
             _helpers = helpers; 
         }

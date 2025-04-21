@@ -1,20 +1,17 @@
-﻿using System.Data.Entity;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ViajaFacil.Data;
 using ViajaFacil.Helpers;
 using ViajaFacil.Models;
-using ViajaFacil.Helpers; 
 
-namespace ViajaFacil.Controllers {
-    [Route("api/[controller]")]
+namespace ViajaFacil.Controllers.Users {
+    [Route("api/users/[controller]")]
     [ApiController]
-    public class UpdateUserController : ControllerBase {
+    public class UpdateController : ControllerBase {
         private readonly AppDbContext _context;
         private readonly Helpers.Helpers _helpers; 
 
-        public UpdateUserController(AppDbContext context, Helpers.Helpers helpers) {
+        public UpdateController(AppDbContext context, Helpers.Helpers helpers) {
             _context = context;
             _helpers = helpers;
         }
