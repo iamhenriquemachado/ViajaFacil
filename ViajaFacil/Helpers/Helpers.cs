@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ViajaFacil.Data;
 using ViajaFacil.Models.Users;
+using ViajaFacil.Models.Destines;
 
 namespace ViajaFacil.Helpers {
     public class Helpers {
@@ -36,6 +37,14 @@ namespace ViajaFacil.Helpers {
         public async Task<bool> EmailExistsForAnotherUser(string email, int currentUserId) {
             var normalizedEmail = email.Trim().ToLowerInvariant();
             return await _context.Users.AnyAsync(u => u.Email == normalizedEmail && u.Id != currentUserId);
+        }
+
+
+
+        // Destines
+
+        public async Task<Destine?> GetDestineById(int id) {
+            return await _context.Destines.FindAsync(id);
         }
     }
 

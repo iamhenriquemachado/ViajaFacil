@@ -4,7 +4,6 @@ using ViajaFacil.Data;
 using ViajaFacil.Helpers;
 using ViajaFacil.Models.Destines;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNet.Identity;
 
 namespace ViajaFacil.Controllers.Destines {
     [Route("api/destines/[controller]")]
