@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore;
 namespace ViajaFacil.Controllers.Destines {
     [Route("api/destines/[controller]")]
     [ApiController]
-    public class DeleteController : ControllerBase {
+    public class DeleteDestineController : ControllerBase {
 
         private readonly AppDbContext _context;
         private readonly Helpers.Helpers _helpers;
 
-        public DeleteController(AppDbContext context, Helpers.Helpers helpers) {
+        public DeleteDestineController(AppDbContext context, Helpers.Helpers helpers) {
             _context = context;
             _helpers = helpers;
         }

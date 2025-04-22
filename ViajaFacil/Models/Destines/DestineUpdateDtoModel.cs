@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace ViajaFacil.Models.Destines {
-    public class DestineUpdateDTO {
+    public class DestineUpdateDtoModel {
         public string Name { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }

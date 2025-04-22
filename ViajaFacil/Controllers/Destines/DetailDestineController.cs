@@ -5,11 +5,11 @@ using ViajaFacil.Data;
 namespace ViajaFacil.Controllers.Destines {
     [Route("api/destines/[controller]")]
     [ApiController]
-    public class DetailsController : ControllerBase {
+    public class DetailDestineController : ControllerBase {
         private readonly AppDbContext _context;
         private readonly Helpers.Helpers _helpers;
 
-        public DetailsController(AppDbContext context, Helpers.Helpers helpers) {
+        public DetailDestineController(AppDbContext context, Helpers.Helpers helpers) {
             _context = context;
             _helpers = helpers;
         }

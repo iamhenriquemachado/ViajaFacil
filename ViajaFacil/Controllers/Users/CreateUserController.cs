@@ -2,24 +2,23 @@
 using ViajaFacil.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
 using ViajaFacil.Helpers;
 using ViajaFacil.Models.Users;
 
 namespace ViajaFacil.Controllers.Users {
     [Route("api/users/[controller]")]
     [ApiController]
-    public class CreateController : ControllerBase {
+    public class CreateUserController : ControllerBase {
         private readonly AppDbContext _context;
         private readonly Helpers.Helpers _helpers; 
 
-        public CreateController(AppDbContext context, Helpers.Helpers helpers) {
+        public CreateUserController(AppDbContext context, Helpers.Helpers helpers) {
             _context = context;
             _helpers = helpers; 
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(User user) {
+        public async Task<IActionResult> Register(UserModel user) {
             
             // Validate the model 
             var modelError = this.GetModelStateErrorResponse();
@@ -34,7 +33,7 @@ namespace ViajaFacil.Controllers.Users {
             }
 
             // Hashes the user password 
-            var passwordHasher = new PasswordHasher<User>();
+            var passwordHasher = new PasswordHasher<UserModel>();
             user.Password = passwordHasher.HashPassword(user, user.Password);
 
             // Save new user in the database

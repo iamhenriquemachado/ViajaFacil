@@ -4,11 +4,11 @@ using ViajaFacil.Data;
 namespace ViajaFacil.Controllers.Users {
     [Route("api/users/[controller]")]
     [ApiController]
-    public class DetailsController : ControllerBase {
+    public class DetailUserController : ControllerBase {
 
         private readonly AppDbContext _context;
         private readonly Helpers.Helpers _helpers; 
-        public DetailsController(AppDbContext context, Helpers.Helpers helpers) {
+        public DetailUserController(AppDbContext context, Helpers.Helpers helpers) {
             _context = context;
             _helpers = helpers;
         }

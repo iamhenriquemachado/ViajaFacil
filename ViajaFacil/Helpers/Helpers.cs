@@ -29,7 +29,7 @@ namespace ViajaFacil.Helpers {
         }
 
         // Retrieves a user by their ID
-        public async Task<User?> GetUserById(int id) {
+        public async Task<UserModel?> GetUserById(int id) {
             return await _context.Users.FindAsync(id);
         }
 
@@ -43,7 +43,7 @@ namespace ViajaFacil.Helpers {
 
         // Destines
 
-        public async Task<Destine?> GetDestineById(int id) {
+        public async Task<DestineModel?> GetDestineById(int id) {
             return await _context.Destines.FindAsync(id);
         }
     }

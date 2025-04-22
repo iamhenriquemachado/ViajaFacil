@@ -1,20 +1,18 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ViajaFacil.Data;
 using ViajaFacil.Helpers;
-using ViajaFacil.Models;
 
 namespace ViajaFacil.Controllers.Users {
     [Route("api/users/[controller]")]
     [ApiController]
-    public class DeleteController : ControllerBase {
+    public class DeleteUserController : ControllerBase {
 
         private readonly AppDbContext _context;
         private readonly Helpers.Helpers _helpers; 
 
-        public DeleteController(AppDbContext context, Helpers.Helpers helpers) {
+        public DeleteUserController(AppDbContext context, Helpers.Helpers helpers) {
             _context = context;
             _helpers = helpers;
         }

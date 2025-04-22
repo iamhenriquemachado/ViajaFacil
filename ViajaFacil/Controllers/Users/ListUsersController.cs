@@ -1,11 +1,8 @@
-﻿using System.Security.Claims;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ViajaFacil.Data;
 using ViajaFacil.Models.Users;
-using ViajaFacil.Helpers;
-
 
 namespace ViajaFacil.Controllers.Users {
 
@@ -34,7 +31,7 @@ namespace ViajaFacil.Controllers.Users {
 
             // Retrieve users from the database
             var users = await _context.Users
-                    .Select(u => new UserDTO {
+                    .Select(u => new UserDtoModel {
                         Id = u.Id,
                         Name = u.Name,
                         Email = u.Email

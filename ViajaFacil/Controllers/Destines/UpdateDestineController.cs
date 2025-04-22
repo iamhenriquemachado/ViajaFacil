@@ -7,19 +7,19 @@ using ViajaFacil.Models.Users;
 namespace ViajaFacil.Controllers.Destines {
     [Route("api/destines/[controller]")]
     [ApiController]
-    public class UpdateController : ControllerBase {
+    public class UpdateDestineController : ControllerBase {
 
         private readonly AppDbContext _context;
         private readonly Helpers.Helpers _helpers;
 
-        public UpdateController(AppDbContext context, Helpers.Helpers helpers) {
+        public UpdateDestineController(AppDbContext context, Helpers.Helpers helpers) {
             _context = context;
             _helpers = helpers;
         }
 
         [Authorize]
         [HttpPatch("{id}")] 
-        public async Task<IActionResult> UpdateDestine(int id, [FromBody] DestineUpdateDTO data) {
+        public async Task<IActionResult> UpdateDestine(int id, [FromBody] DestineUpdateDtoModel data) {
 
             var userId = _helpers.GetUserIdFromClaims();
             if (userId == null)

@@ -35,7 +35,7 @@ namespace ViajaFacil.Controllers.Auth {
             };
 
 
-            var passwordHasher = new PasswordHasher<User>();
+            var passwordHasher = new PasswordHasher<UserModel>();
             var result = passwordHasher.VerifyHashedPassword(user, user.Password, model.Password);
             if (result == PasswordVerificationResult.Failed) {
                 return Unauthorized(new { message = "Invalid email or password 02" });

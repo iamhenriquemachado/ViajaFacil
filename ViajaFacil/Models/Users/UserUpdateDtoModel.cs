@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace ViajaFacil.Models.Users {
-    public class UserUpdateDTO {
+    public class UserUpdateDtoModel {
 
         [Required(ErrorMessage = "Name is required")]
         [StringLength(100, ErrorMessage = "Name must be less than 100 characters")]

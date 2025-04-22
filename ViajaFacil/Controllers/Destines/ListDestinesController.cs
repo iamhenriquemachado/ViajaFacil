@@ -26,7 +26,7 @@ namespace ViajaFacil.Controllers.Destines {
                 return Unauthorized(new { message = "Unauthorized" });
 
             var destines = await _context.Destines
-                .Select(d => new DestineDTO {
+                .Select(d => new DestineDtoModel {
                     Id = d.Id,
                     Name = d.Name, 
                     Description = d.Description,

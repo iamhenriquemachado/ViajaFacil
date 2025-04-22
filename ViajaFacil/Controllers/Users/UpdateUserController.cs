@@ -7,18 +7,18 @@ using ViajaFacil.Models.Users;
 namespace ViajaFacil.Controllers.Users {
     [Route("api/users/[controller]")]
     [ApiController]
-    public class UpdateController : ControllerBase {
+    public class UpdateUserController : ControllerBase {
         private readonly AppDbContext _context;
         private readonly Helpers.Helpers _helpers; 
 
-        public UpdateController(AppDbContext context, Helpers.Helpers helpers) {
+        public UpdateUserController(AppDbContext context, Helpers.Helpers helpers) {
             _context = context;
             _helpers = helpers;
         }
 
         [Authorize]
         [HttpPatch("{id}")]
-        public async Task<IActionResult> UpdateUserById(int id, [FromBody] UserUpdateDTO data) {
+        public async Task<IActionResult> UpdateUserById(int id, [FromBody] UserUpdateDtoModel data) {
 
             var modelError = this.GetModelStateErrorResponse();
             if (modelError != null)

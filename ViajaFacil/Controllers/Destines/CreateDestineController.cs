@@ -8,18 +8,18 @@ using Microsoft.EntityFrameworkCore;
 namespace ViajaFacil.Controllers.Destines {
     [Route("api/destines/[controller]")]
     [ApiController]
-    public class CreateController : ControllerBase {
+    public class CreateDestineController : ControllerBase {
         private readonly AppDbContext _context;
         private readonly Helpers.Helpers _helpers;
 
-        public CreateController(AppDbContext context, Helpers.Helpers helpers) {
+        public CreateDestineController(AppDbContext context, Helpers.Helpers helpers) {
             _context = context;
             _helpers = helpers;
         }
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> CreateDestine(Destine destine) {
+        public async Task<IActionResult> CreateDestine(DestineModel destine) {
             var modelError = ValidateModel();
             if (modelError != null)
                 return modelError;
@@ -40,7 +40,7 @@ namespace ViajaFacil.Controllers.Destines {
                 .AnyAsync(d => d.Name.ToLower() == name.ToLower());
         }
 
-        private async Task<IActionResult> SaveDestine(Destine destine) {
+        private async Task<IActionResult> SaveDestine(DestineModel destine) {
             try {
                 _context.Destines.Add(destine);
                 await _context.SaveChangesAsync();

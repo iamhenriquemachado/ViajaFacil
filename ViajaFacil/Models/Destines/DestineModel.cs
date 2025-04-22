@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ViajaFacil.Models.Destines {
-    public class Destine {
+    public class DestineModel {
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
