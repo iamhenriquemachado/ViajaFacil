@@ -17,7 +17,7 @@ namespace ViajaFacil.Controllers.Users {
             _helpers = helpers; 
         }
 
-        [HttpPost("register")]
+        [HttpPost]
         public async Task<IActionResult> Register(UserModel user) {
             
             // Validate the model 
