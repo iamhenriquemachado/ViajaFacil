@@ -23,7 +23,7 @@ namespace ViajaFacil.Controllers.Reserves {
 
             var loggedInUserId = _helpers.GetUserIdFromClaims();
             if (loggedInUserId == null)
-                return BadRequest(new { message = "Unauthorized" });
+                return Unauthorized(new { message = "Unauthorized" });
 
             var user = await _context.Users.FindAsync(loggedInUserId.Value);
             if (user == null)
@@ -36,7 +36,7 @@ namespace ViajaFacil.Controllers.Reserves {
              if(destination == null)
                 return NotFound(new { message = "Destination not found" });
 
-            var checkDuplicatedReserve =     _context.Reserves.FirstOrDefault(r => r.UserId == loggedInUserId.Value && r.DestinationId == reserve.DestinationId);
+            var checkDuplicatedReserve = _context.Reserves.FirstOrDefault(r => r.UserId == loggedInUserId.Value && r.DestinationId == reserve.DestinationId);
             if (checkDuplicatedReserve != null)
                 return Conflict(new { message = "You cannot create two reserves for the same destination" });
 
