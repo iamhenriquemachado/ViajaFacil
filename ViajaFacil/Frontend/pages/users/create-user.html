@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/pages/create-user.css">
+    <title>Criar Novo Usuário</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Menu -->
+        <aside>
+            <h2>Menu</h2>
+            <ul>
+                <li>
+                    <a href="#users"> 👨‍💻 Usuários </a>
+                    <ul class="submenu">
+                        <li><a href="create-user">Criar Novo Usuário</a></li>
+                        <li><a href="list-user">Listar Usuários</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#destines"> 🏖️ Destinos </a>
+                </li>
+                <li>
+                    <a href="#reserves"> 📍 Reservas </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main>
+            <h3>Insira as informações para criar um novo usuário</h3>
+            <form id="create-user">
+                <label for="">Nome</label>
+                <input type="text" placeholder="Insira o nome do usuário">
+
+                <label for="">E-mail</label>
+                <input type="text" placeholder="Insira o e-mail do usuário">
+
+                <label for="">Senha</label>
+                <input type="text" placeholder="Defina uma senha para o usuário">
+
+                <label for="">Admin</label>
+                <select name="admin" id="admin">
+                    <option value="true">Sim</option>
+                    <option value="false">Não</option>
+                </select>
+                <button type="submit">Criar Usuário</button>
+            </form>
+        </main>
+    </div>
+</body>
+</html>

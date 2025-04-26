@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -6,11 +6,23 @@ using ViajaFacil.Data;
 using ViajaFacil.Services;
 using ViajaFacil.Helpers;
 
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options => {
+    options.AddPolicy("CorsPolicy", builder => {
+        builder.WithOrigins("http://localhost:5500", "http://127.0.0.1:5500")
+               .AllowAnyHeader()
+               .AllowAnyMethod()
+               .AllowCredentials();
+        });
+});
 
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
 
 // JWT Authentication Setup
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
@@ -42,8 +54,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Register IHttpContextAccessor
-builder.Services.AddHttpContextAccessor(); // Add this line
+builder.Services.AddHttpContextAccessor(); 
 
 // Register Helpers
 builder.Services.AddScoped<Helpers>();
@@ -57,6 +68,8 @@ if (app.Environment.IsDevelopment()) {
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("CorsPolicy");
 
 app.UseAuthentication();
 

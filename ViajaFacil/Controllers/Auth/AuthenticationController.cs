@@ -47,16 +47,18 @@ namespace ViajaFacil.Controllers.Auth {
                user.IsAdmin
            );
 
+            Response.Cookies.Append("token", token, new CookieOptions {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.None,
+                Expires = DateTimeOffset.UtcNow.AddHours(24)
+            });
+
 
             return Ok(new {
-                token,
-                user = new {
-                    user.Id,
-                    user.Name,
-                    user.Email,
-                    user.IsAdmin
-                }
+                isAdmin = user.IsAdmin
             });
+              
         }
 
         [Authorize]
