@@ -29,6 +29,7 @@ namespace ViajaFacil.Controllers.Users {
                 return Unauthorized(new { message = "Only administrators are allowed" });
 
 
+
             // Retrieve users from the database
             var users = await _context.Users
                     .Select(u => new UserDtoModel {

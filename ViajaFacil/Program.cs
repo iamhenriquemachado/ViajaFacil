@@ -31,9 +31,20 @@ var key = Encoding.ASCII.GetBytes(jwtSettings["SecretKey"]);
 builder.Services.AddAuthentication(x => {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
 })
 
 .AddJwtBearer(options => {
+    options.Events = new JwtBearerEvents {
+        OnMessageReceived = context => {
+            var token = context.Request.Cookies["token"]; 
+            if (!string.IsNullOrEmpty(token)) {
+                context.Token = token;
+            }
+            return Task.CompletedTask;
+        }
+    };
+
     options.RequireHttpsMetadata = false;
     options.SaveToken = true;
     options.TokenValidationParameters = new TokenValidationParameters {
@@ -43,9 +54,10 @@ builder.Services.AddAuthentication(x => {
         ValidateAudience = true,
         ValidIssuer = jwtSettings["Issuer"],
         ValidAudience = jwtSettings["Audience"],
-        ClockSkew = TimeSpan.Zero,
+        ClockSkew = TimeSpan.Zero
     };
 });
+
 
 builder.Services.AddScoped<ITokenService, TokenService>();
 
