@@ -20,6 +20,14 @@ namespace ViajaFacil.Controllers.Destines {
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateDestine(DestineModel destine) {
+
+            var userId = _helpers.GetUserIdFromClaims();
+            if (userId == null)
+                return Unauthorized(new { message = "Unauthorized" });
+
+            if (!await _helpers.IsAdminUser(userId.Value))
+                return Unauthorized(new { message = "Only administrators are allowed" });
+
             var modelError = ValidateModel();
             if (modelError != null)
                 return modelError;
