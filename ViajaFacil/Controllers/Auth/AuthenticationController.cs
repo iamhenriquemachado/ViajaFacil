@@ -56,6 +56,7 @@ namespace ViajaFacil.Controllers.Auth {
 
 
             return Ok(new {
+                token, 
                 isAdmin = user.IsAdmin
             });
               
